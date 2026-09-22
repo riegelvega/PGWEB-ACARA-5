@@ -52,25 +52,22 @@
             },
             // onEachFeature
             onEachFeature: function (feature, layer) {
-                // variable popup content
                 var popup_content =
-                    "Nama: " + feature.properties.nama + "<br>" +
+                    "Nama: " + feature.properties.TOPONIMI + "<br>" +
                     "Koordinat: " + feature.geometry.coordinates[1] + ", " + feature.geometry.coordinates[0] + "<br>" +
-                    "<img src= 'images/image/gunung-ile-lewero.jpg" + feature.properties.image + " 'alt=' 'width='50' height='50'>";
+                    "<img src='image/" + feature.properties.image + "' alt='Foto' width='100' height='100'>";
+
+                layer.bindPopup(popup_content);
 
                 layer.on({
-                    click: function (e) {
-                        toponimi.bindPopup(popup_content);
-                    },
                     mouseover: function (e) {
-                        toponimi.bindTooltip(feature.properties.TOPONIMI, {
+                        layer.bindTooltip(feature.properties.TOPONIMI, {
                             direction: "left",
                             sticky: true,
                         });
                     },
                 });
-
-            },
+            }
         });
 
         // GeoJSON Polyline Jalan
@@ -119,7 +116,7 @@
             onEachFeature: function (feature, layer) {
                 // variable popup content
                 var popup_content = "Kecamatan: " + feature.properties.WADMKC + "<br>" +
-                    "Jumlah Penduduk: " + feature.properties.jumlah_penduduk;
+                    "Jumlah Penduduk: " + feature.properties.penduduk;
 
                 layer.on({
                     click: function (e) {
